@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea Factura Gratis Online sin registrarse</title>
+    <meta name="Keywords" content="Crear facturas online como autónomo o empresa gratis ">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://service-online.su/text/text-editor/ckeditor-full/contents.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/i18n/jquery-ui-i18n.min.js"></script>
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.apidelv.com/libs/awesome-functions/awesome-functions.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/2.1.0/bootstrap-filestyle.min.js
+    "> </script>
+    <script src="https://npmcdn.com/vue-sortable@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.js"></script>
+
+</head>
+<!-- ворд -->
+
+
+<!-- конец ворд -->
+<style>
+    body {
+        margin: 0 auto;
+        display: grid;
+        justify-content: center;
+        max-width: 1000px;
+    }
+
+    .all_summ {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .ui-datepicker-trigger {
+        margin-left: 5px;
+        position: relative;
+        top: 3px;
+        cursor: pointer;
+    }
+
+    #adress {
+
+        line-height: 28px;
+        height: 100px;
+    }
+
+    .all {
+        display: grid;
+        grid-template-columns: 1fr 100px 1fr;
+        grid-auto-rows: -webkit-max-content;
+        grid-auto-rows: max-content;
+        /* margin: 0 -30px; */
+        padding: 30px 30px 70px;
+        background: rgba(245, 242, 241, .5);
+        border-radius: 10px;
+    }
+
+    .bootstrap-filestyle {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .linia::before {
+        position: absolute;
+        top: 10%;
+        bottom: 0;
+        left: 50%;
+        margin: 50px 0 60px;
+        border-left: 1px solid rgba(0, 0, 0, .1);
+        content: "";
+    }
+
+    .input-group .btn {
+
+
+        font-size: 20px;
+    }
+
+
+    .text {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr .3fr .1fr;
+        /* justify-items: center; */
+    }
+
+    input[type="text"] {
+        width: 100% !important;
+    }
+
+    input[type="number"] {
+        width: 100% !important;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    #summa {
+        display: flex;
+        align-items: center;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .mygrid {
+        display: grid;
+        grid-template-columns: .5fr 1.5fr
+    }
+
+    @media (max-width: 600px) {
+        .mygrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0;
+            margin: 0;
+            justify-items: center;
+        }
+
+        .mygrid div {
+            padding: 0 10px;
+        }
+
+        .text div {
+            font-size: 13px;
+        }
+
+        .sel {
+
+            width: 100px;
+
+        }
+
+        .btns div {
+            display: grid;
+            grid-gap: 5px;
+        }
+
+        .all_summ {
+            justify-items: center;
+        }
+
+        .all {
+            grid-template-columns: 1fr 15px 1fr;
+        }
+    }
+</style>
+
+<body id="myBody">
+    <style>
+        .upload_preview img {
+
+            width: 80px;
+
+            height: auto;
+
+            margin-right: 10px;
+
+            display: inline-block;
+
+        }
+    </style>
+
+
+
+    <script type="text/javascript">
+
+        // $(function () {
+
+        //     $('#upload_file').change(function () {
+
+        //         var f = this.files, i, r = new RegExp(this.accept.replace(/,/g, '|')), b = $('#image_preview');
+
+        //         for (i = 0; i < f.length; ++i) {
+
+        //             if (r.test(f[i].type)) b.append("<img class='thumb' src='" + URL.createObjectURL(f[i]) + "'>");
+
+        //         }
+
+        //     });
+
+        // });
+
+
+        $(function () {
+
+            $('#upload_file').change(function () {
+
+                var f = this.files, i, r = new RegExp(this.accept.replace(/,/g, '|')), b = $('#image_preview');
+
+                for (i = 0; i < f.length; i++) {
+
+                    if (r.test(f[i].type)) b.append("<img class='thumb" + i + "' src='" + URL.createObjectURL(f[i]) + "'>");
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+
+    <script>
+        $(function () {
+
+            $('#datepicker').datepicker($.datepicker.regional["es"]);
+
+        });
+        $(function () {
+            $("#datepicker").datepicker()
+        })
+        $(document).ready(function () {
+            $('#datepicker').datepicker();
+            $('#datepicker').datepicker('setDate', 'today');
+        })
+    </script>
+    <h1> Crea Factura Gratis Online</h1>
+    <form action="test.php" method="post" class="formWithValidation" enctype="multipart/form-data">
+        <div id="toPDF">
+            <div class="mygrid">
+                <div> <label for="schet">Número
+                        <input class="form-control" name="pay1" type="text"></label></div>
+                <div> <label for="datepicker"> Fecha: <input type="text" name="calendar" id="datepicker"
+                            class="datepicker1 form-control" placeholder="Выберите дату" /></label></div>
+
+            </div>
+            <div class="all">
+                <div class="prodavec">
+                    <p><b>Sus Datos</b></p>
+                    <div class="firma_ooo">
+
+                        <div>
+                            <label for="inn">*Nombre: </label><br>
+                            <input class="form-control" v-model="data" name="fnombre" required value="" id="inn"
+                                type="text" placeholder="Travel Class International S.L." />
+                            </label>
+                        </div>
+                        <div>
+                            <label for="">Teléfono<br />
+                                <input class="form-control" name="ftel" type="text" />
+                            </label>
+                        </div>
+
+                        <div>
+                            <label for="buh">*E-mail<br />
+                                <input class="form-control" name="femail" required id="buh" type="email" />
+                            </label>
+                        </div>
+                        <div>
+                            <label for="bank1">NIF:<br />
+                                <input type="text" class="form-control" name="fnif" maxlength=" 12"
+                                    title="Введите корректный NIF: 12" placeholder="NIF:" />
+
+                            </label>
+                        </div>
+                        <div>
+                            <label for="bank2">IVA: <br />
+                                <input type="text" class="form-control" maxlength=" 12"
+                                    title="Введите корректный IVA: 12" name="fiva" placeholder="IVA: " />
+
+                            </label>
+                        </div>
+                        <div>
+                            <label for="rasc_sch">Dirección: <br />
+                                <textarea class="form-control" id="rasc_sch" name="fdirection"></textarea>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="bik">Cuenta (IBAN): <br />
+                                <input class="form-control" name="fiban" id="bik" type="text" />
+                            </label>
+                        </div>
+                        <div>
+                            <label for="kor_schet">SWIFT code: <br />
+                                <input class="form-control" maxlength="12" name="fswift" id="kor_schet" type="text" />
+                            </label>
+                        </div>
+
+                        <p>
+                            <label for="id_company_logo">
+                                Su logo:
+                            </label>
+                            <input type="file" id="upload_file" class="filestyle" name="picture"
+                                accept="image/jpeg,image/png,image/gif" />
+
+                        <div id="image_preview" class="upload_preview"></div>
+                        <!-- <input type="file" class="filestyle" v-model="picture" name="picture" data-classButton=""
+                                data-input="true" data-buttonText="Your label here."> -->
+
+
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="linia">
+
+                </div>
+                <div class="pokupatel">
+
+                    <p><b>Datos del cliente</b></p>
+                    <div>
+                        <label for="inn">*Nombre: </label><br>
+                        <input class="form-control" id="inn" required name="cnombre" type="text"
+                            placeholder="Travel Class International S.L." />
+                        </label>
+                    </div>
+                    <div>
+                        <label for="">Teléfono<br />
+                            <input class="form-control" name="ctel" type="text" />
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="buh">*E-mail<br />
+                            <input class="form-control" id="buh" required name="cemail" type="email" />
+                        </label>
+                    </div>
+                    <div>
+                        <label for="rasc_sch">Dirección
+                            <textarea class="form-control" id="rasc_sch" name="cdirection"></textarea>
+
+                        </label>
+                    </div>
+                    <div>
+
+                        <label for=" bank3">NIF:<br />
+                            <input type="text" class="form-control" name="cnif" maxlength=" 12"
+                                title="Введите корректный NIF: 12" placeholder="NIF:" />
+
+                        </label>
+                    </div>
+                    <div>
+                        <label for="bank4">IVA: <br />
+                            <input type="text" name="civa" class="form-control" maxlength=" 12"
+                                title="Введите корректный IVA: 12 " placeholder="IVA: " />
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text" style="padding: 0.5rem 1rem;">
+            <div>Concepto</div>
+            <div>Precio unidad</div>
+            <div>Cant.</div>
+            <div>Dto.%</div>
+            <div>IVA %</div>
+            <div style="display:grid; justify-items: center;">Precio</div>
+            <div></div>
+
+
+        </div>
+
+        <div class="list-group" v-sortable="{ handle:'.handle', onUpdate: onUpdate }">
+            <div class="list-group-item" v-for="answer in answers">
+                <div class="input-group input-group-sm text">
+
+                    <input type="text" name="concepto[]" class="form-control" id="title{{$index + 1}}"
+                        v-model="answer.title" placeholder="Concepto">
+                    <input type="number" name="colvo[]" class="form-control" id="kolvo{{$index + 1}}"
+                        v-model="answer.kolvo" placeholder="0">
+                    <input type="number" name="ed_izm[]" class="form-control" v-model="answer.ed_izm"
+                        id="ed_izm{{$index + 1}}" placeholder="0,0000">
+                    <input type="number" name="price[]" class="form-control" id="price{{$index + 1}}"
+                        v-model="answer.price" placeholder="0">
+                    <input type="number" name=operation[] v-model="answer.operation" class="form-control"
+                        placeholder="0">
+
+                    <div>
+                        <input type="text" disabled="true" name="total[]" class="summ" v-model="answer.total"
+                            style="border: none; background: none;     text-align: center;" />
+
+                        <input type="text" disabled="true" id="summaProcent{{$index + 1}}" v-model="answer.procent"
+                            style="border: none; background: none;     text-align: center;" />
+                        <span class="input-group-btn">
+                    </div>
+
+
+                    <button tabIndex="-1" class="btn btn-sm" type="button" v-if=" answers.length > 1" @click="
+                      deleteAnswer(answer)">
+                        X
+                    </button>
+                    </span>
+                </div>
+            </div>
+            <div style="display:none"></div>
+        </div>
+
+        <!-- <button @click="calculate">посчитать</button> -->
+        <button v-if=" answers.length < 10" @click="addAnswer" class="btn " style="width:100%">Añadir concepto</button>
+        <hr>
+
+
+        <div class="all_summ">
+
+            <div>
+                <p><b>Total</b></p>
+
+                <select class="sel" v-model="money">
+                    <option value="  €" selected>Euro € </option>
+                    <option value=" $"> US Dollar $ </option>
+                    <option value=" Mex$">Mexican peso Mex$ </option>
+                    <option value=" COL$">Colombian peso COL$ </option>
+                </select>
+
+            </div>
+            <div>
+                <p>Base imponible</p>
+                <p>IVA %</p>
+                <p><b>Total</b></p>
+
+            </div>
+            <div>
+
+
+
+
+                <p>{{totalSummabezNds}}{{money}}</p>
+                <p>{{ totalFormat }}{{money}}</p>
+                <p><b>{{totalSumma}}{{money}}</b></p>
+
+
+                <input type="hidden" name="totalSummabezNds" value="{{totalSummabezNds}}{{money}}">
+                <input type="hidden" name="totalFormat" value="{{ totalFormat }}{{money}}">
+                <input type="hidden" name="totalSumma" value="{{totalSumma}}{{money}}">
+
+            </div>
+        </div>
+        <div>
+
+            <textarea type="text" name="notas" class="form-control"
+                placeholder="Estas notas aparecerán en la factura"></textarea>
+            <!-- <label for="primechanie"> Estas notas aparecerán en la factura
+          </label> -->
+        </div>
+        </div>
+
+        <div class=" btns">
+
+
+            <div style="padding: 20px 0">
+
+                <input type="submit" id="rep" value="Descargar PDF " name="sendPhp" class="btn btn-info btn_save "
+                    class="btn btn-info btn_save">
+                <input type="submit" id="rep" name="sendEmail" value="Enviar Factura a mi"
+                    class="btn btn-info btn_print">
+                <input type="submit" id="rep" name="sendEmail2" value="Enviar Factura al cliente"
+                    class="btn btn-info btn_print">
+
+            </div>
+        </div>
+        <script>
+            function Item(title) {
+                this.title = "";
+                this.kolvo = 0;
+                this.ed_izm = 1;
+                this.price = 0;
+                this.operation = 0;
+                this.total = "";
+                this.procent = '';
+                this.res = 0
+                this.res1 = 0
+            }
+
+            var app = new Vue({
+                el: 'body',
+                data: {
+                    answers: [new Item()],
+
+                    total: 0,
+                    count: 1,
+                    operation: 0,
+                    packageChecked: 0,
+                    res: 0,
+
+                    postResult: null,
+
+                },
+
+                methods: {
+                    addAnswer: function (event) {
+                        event.preventDefault();
+                        this.answers.push(new Item(''));
+                    },
+                    deleteAnswer: function (answer) {
+                        this.answers.$remove(answer)
+                    },
+                    onUpdate: function (event) {
+                        var movingElement = this.answers.splice(event.oldIndex, 1)[0];
+                        this.answers.splice(event.newIndex, 0, movingElement);
+
+                    },
+
+
+                },
+                computed: {
+                    totalFormat: function () {
+                        let nds = 0;
+                        this.total = 0;
+
+                        this.answers.forEach(answer => {
+                            let kolvo = answer.kolvo;
+                            let ed_izm = answer.ed_izm;
+                            let price = answer.price;
+                            let total_price = kolvo * price * ed_izm;
+                            let pct = answer.operation / 100.00;
+                            let skidka = (kolvo * ed_izm) * price / 100;
+                            let answer_nds = (kolvo * ed_izm - skidka) * pct;
+                            // let answer_nds = kolvo * ed_izm - ((kolvo * ed_izm) / 100) * price + kolvo * ed_izm * pct
+
+                            let answer_total = kolvo * ed_izm - skidka + answer_nds
+                            this.total += answer_total;
+
+                            answer.total = answer_total ? answer_total.toFixed(2) : '';
+                            answer.procent = answer_nds ? 'Iva ' + answer_nds.toFixed(2) : '';
+                            nds += answer_nds
+
+
+                        })
+                        return nds ? nds.toFixed(2) : '0';
+
+                    },
+
+                    totalSummabezNds: function () {
+                        let summa = 0;
+                        this.total = 0;
+
+                        this.answers.forEach(answer => {
+                            let kolvo = answer.kolvo;
+                            let ed_izm = answer.ed_izm;
+                            let price = answer.price;
+                            let total_price = kolvo * price * ed_izm;
+                            let pct = answer.operation / 100.00;
+                            let answer_nds = kolvo * ed_izm * pct;
+                            let answer_total = (kolvo * ed_izm - ((kolvo * ed_izm) / 100) * price + kolvo * ed_izm * pct) - answer_nds
+                            this.total += answer_total;
+                            summa += answer_total
+                        })
+                        return summa ? summa.toFixed(2) : '0';
+
+                    },
+                    totalSumma: function () {
+                        let summa = 0;
+                        this.total = 0;
+                        this.answers.forEach(answer => {
+                            let kolvo = answer.kolvo;
+                            let ed_izm = answer.ed_izm;
+                            let price = answer.price;
+                            let total_price = kolvo * price * ed_izm;
+                            let pct = answer.operation / 100.00;
+                            let skidka = (kolvo * ed_izm) * price / 100;
+                            let answer_nds = (kolvo * ed_izm - skidka) * pct;
+                            // let answer_nds = kolvo * ed_izm - ((kolvo * ed_izm) / 100) * price + kolvo * ed_izm * pct
+
+                            let answer_total = kolvo * ed_izm - skidka + answer_nds
+                            this.total += answer_total;
+
+                            answer.total = answer_total ? answer_total.toFixed(2) : '';
+                            this.total += answer_total;
+                            summa += answer_total
+                        })
+                        return summa ? summa.toFixed(2) : '0';
+
+                    }
+                }
+            });
+        </script>
+    </form>
+
+    <!-- тут vue -->
+
+
+    <div class="cke_contents_ltr">
+        <p><strong><u><span style="font-size:13.0pt"><span style="color:black">La mejor soluci&oacute;n para
+                            confeccionar facturas de compraventa en l&iacute;nea y sin costo</span></span></u></strong>
+        </p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Ser un empresario PYME o aut&oacute;nomo implica
+                    tener que desarrollar m&uacute;ltiples tareas, o tener que ejecutarlas con un m&iacute;nimo de
+                    personal. </span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Aunque el negocio sea incipiente, los procesos
+                    administrativos llevan su tiempo para reflejar los resultados de las operaciones con orden y
+                    claridad.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">La facturaci&oacute;n para Hacienda es una tarea
+                    clave en ese proceso, y hacerla manualmente implica duplicar el trabajo y acrecienta el riesgo de
+                    cometer m&uacute;ltiples errores u omisiones que acarrean muchos problemas con el
+                    fisco.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Quienes facturan de forma manual deben prestar mucha
+                    atenci&oacute;n ya que es m&aacute;s habitual de lo que se supone omitir informaci&oacute;n
+                    imprescindible o equivocarse en alguna anotaci&oacute;n: fechas, datos del emisor, del cliente,
+                    hasta incluso el importe total.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Por otra parte, a partir de 2023 la factura
+                    electr&oacute;nica ser&aacute; obligatoria y queramos o no deberemos acostumbrarnos a la
+                    digitalizaci&oacute;n de nuestras transacciones.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Podemos clasificar los distintos formatos de
+                    facturas seg&uacute;n la siguiente descripci&oacute;n:</span></span></p>
+
+        <ul>
+            <li><span style="color:black"><strong><span style="font-size:12.0pt">Factura ordinaria</span></strong><span
+                        style="font-size:12.0pt">: es la factura m&aacute;s com&uacute;n.</span></span></li>
+            <li><span style="color:black"><strong><span style="font-size:12.0pt">Factura
+                            simplificada</span></strong><span style="font-size:12.0pt">: la que antes era un
+                        ticket.</span></span></li>
+            <li><span style="color:black"><strong><span style="font-size:12.0pt">Factura
+                            recapitulativa</span></strong><span style="font-size:12.0pt">: agrupa las operaciones entre
+                        empresas de manera recurrente en un per&iacute;odo de tiempo.</span></span></li>
+            <li><span style="color:black"><strong><span style="font-size:12.0pt">Factura
+                            rectificativa</span></strong><span style="font-size:12.0pt">: son las que se hacen para
+                        resarcir un error en una factura anterior mal confeccionada.</span></span></li>
+            <li><span style="color:black"><strong><span style="font-size:12.0pt">Factura
+                            electr&oacute;nica</span></strong><span style="font-size:12.0pt">: es la modalidad digital
+                        de cualquiera de los documentos anteriores.</span></span></li>
+        </ul>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">En cada caso, los datos obligatorios a descargar en
+                    el formulario para cumplir con las disposiciones de Hacienda son varios y comprenden
+                    b&aacute;sicamente la informaci&oacute;n fiscal del emisor, del receptor y de los art&iacute;culos o
+                    servicios propios de la compraventa.&nbsp; Adem&aacute;s de tener que detallar los porcentajes de
+                    IVA </span></span><span style="font-size:12.0pt"><span style="color:black">(Impuesto al Valor
+                    A&ntilde;adido), descuentos en el precio en caso de que los hubiere, IRPF (Impuesto sobre la Renta
+                    de las Personas F&iacute;sicas) y dem&aacute;s tipos de retenciones sobre transacciones seg&uacute;n
+                    sea el caso. </span></span></p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Le corresponde al cliente efectuar el
+                    dep&oacute;sito del importe de la retenci&oacute;n, pero el emisor es quien debe detallar y efectuar
+                    el descuento en la factura confeccionada.</span></span></p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Cabe aclarar que el IVA tiene cuatro
+                    categor&iacute;as seg&uacute;n la actividad: 21% General, 10% Reducido, 4% Superreducido, 0%
+                    Excento.</span></span></p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Las facturas se pueden emitir en cualquier idioma y
+                    moneda, con la salvedad de que el importe del IVA se exprese en Euros. Adem&aacute;s, existe la
+                    opci&oacute;n de exigir la traducci&oacute;n al espa&ntilde;ol o cualquier lengua oficial que se
+                    requiera.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Para evitar tantos males y que puedas enfocarte
+                    mejor en tus tareas rentables y disfrutar de la tranquilidad de un trabajo bien hecho, traemos a tu
+                    alcance la mejor y m&aacute;s pr&aacute;ctica </span></span><em><span style="font-size:13.0pt"><span
+                        style="color:black">herramienta de facturaci&oacute;n de compraventa en l&iacute;nea y
+                        gratuita</span></span></em><em><span style="font-size:12.0pt"><span style="color:black">:
+                        <strong>&ldquo;Crea factura Gratis&rdquo;.</strong> </span></span></em></p>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p><strong><span style="font-size:12.0pt"><span style="color:black">M&uacute;ltiples beneficios al utilizar
+                        <em>Crea factura gratis </em>como herramienta de trabajo.</span></span></strong></p>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><em><span style="font-size:12.0pt"><span style="color:black">Crea factura gratis</span></span></em><span
+                    style="font-size:12.0pt"><span style="color:black"> es un sistema de facturaci&oacute;n
+                        pr&aacute;ctico e intuitivo, de f&aacute;cil implementaci&oacute;n.</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Puedes confeccionar tu factura online de forma
+                        gratuita, r&aacute;pida y segura, con la posibilidad de enviarla al instante y cobrar de
+                        inmediato.</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Tendr&aacute;s acceso a la informaci&oacute;n
+                        desde cualquier lugar y en cualquier momento, todo en un mismo sitio y ordenadamente a
+                        trav&eacute;s de la nube. </span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Estar&aacute;s en sinton&iacute;a con la
+                        sostenibilidad del medio ambiente tanto como de tu econom&iacute;a, ya que ahorrar&aacute;s
+                        gastos en papeler&iacute;a y &uacute;tiles. Hoy m&aacute;s que nunca hay que cuidar nuestros
+                        gastos y nuestro planeta.</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Al no imprimir y archivar tambi&eacute;n se
+                        ahorra en orden y espacio, lo que permitir&iacute;a tener tu oficina en cualquier lugar y o
+                        incluso no tenerla f&iacute;sicamente.</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <p>&nbsp;</p>
+
+        <p><strong><span style="font-size:12.0pt"><span style="color:black">Principales caracter&iacute;sticas del
+                        sistema de facturaci&oacute;n en l&iacute;nea gratuito <em>Crea factura
+                            gratis</em></span></span></strong></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Al ingresar al sitio encontrar&aacute;s un
+                    formulario predeterminado con campos para rellenar con todos los datos necesarios e imprescindibles
+                    para confeccionar facturas online de forma adecuada.&nbsp; Esto evitar&aacute; que haya errores u
+                    omisiones ya que cada componente indispensable del comprobante tiene un sitio determinado y
+                    habilitado para ser rellenado. &nbsp;</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Adem&aacute;s, tiene opciones de
+                    personalizaci&oacute;n donde podr&aacute;s darle el toque personal que identifica el car&aacute;cter
+                    de tu empresa sin que esto interfiera en el cumplimiento de las especificaciones requeridas por el
+                    organismo de control. </span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Los datos cuyos campos est&aacute;n prefijados que
+                    deber&aacute;s cargar en el formulario son los siguientes:</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Numeraci&oacute;n: Es indispensable que cada
+                        factura tenga una numeraci&oacute;n &uacute;nica y consecutiva para ser ordenados y no tener
+                        problemas con Hacienda.&nbsp; Tu puedes cargar el n&uacute;mero inicial que determines y luego
+                        llevar el control de que sean consecutivos.</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Fecha de emisi&oacute;n del comprobante: Al
+                        hacer clic en este campo, se despliega un calendario donde puedes elegir la fecha de la
+                        factura.&nbsp; Generalmente coincide con la fecha de cobro de la misma, y de no ser as&iacute;,
+                        hay un apartado al pie de la planilla para hacer las aclaraciones pertinentes.</span></span>
+            </li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">A continuaci&oacute;n, se visualizan dos columnas
+                    con campos para rellenar con los datos del emisor (izquierda) y cliente (derecha):</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Datos requeridos del emisor:</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Nombre*</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Tel&eacute;fono</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">E-mail*</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">NIF (n&uacute;mero de identificaci&oacute;n de
+                        personas f&iacute;sicas o jur&iacute;dicas)</span></span></li>
+        </ul>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">IVA (tipo de IVA seg&uacute;n la
+                        actividad)</span></span></li>
+        </ul>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Direcci&oacute;n</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Cuenta (IBAN) (c&oacute;digo de
+                        identificaci&oacute;n de n&uacute;mero de cuenta) </span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">SWIFT code (c&oacute;digo de
+                        identificaci&oacute;n de entidades bancarias)</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Logo de la empresa (para el caso de que quieras
+                        personalizarla)</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Datos requeridos del cliente:</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Nombre*</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Tel&eacute;fono</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">E-mail*</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Direcci&oacute;n</span></span></li>
+        </ul>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">NIF (n&uacute;mero de identificaci&oacute;n de
+                        personas f&iacute;sicas o jur&iacute;dicas)</span></span></li>
+        </ul>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">IVA (tipo de IVA seg&uacute;n la
+                        actividad)</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Debajo se encuentra el &aacute;rea de desarrollo de
+                    los conceptos donde debemos detallar claramente la venta de nuestro producto o servicio (motivo de
+                    la transacci&oacute;n). Tambi&eacute;n pueden detallarse los gastos suplidos como tasas que el
+                    emisor de la factura haya erogado a favor del receptor, y sobre los cuales no aplica ning&uacute;n
+                    impuesto.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <ul>
+            <li><span style="font-size:12.0pt"><span style="color:black">Concepto (detalle del producto o servicio
+                        motivo de la transacci&oacute;n y gastos suplidos si los hubiere)</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Precio unitario (del producto o
+                        servicio)</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Cantidad (del producto o
+                        servicio)</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">Descuento % (rebaja en el importe que se aplica
+                        en ciertos casos)</span></span></li>
+            <li><span style="font-size:12.0pt"><span style="color:black">IVA % (seg&uacute;n corresponda a cada
+                        actividad)</span></span></li>
+        </ul>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Una vez cargada esta informaci&oacute;n, se
+                    ver&aacute;n reflejados los importes del precio base imponible, importe de IVA, retenciones y precio
+                    final total.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Debajo se encuentra el campo de &ldquo;notas&rdquo;
+                    para cualquier aclaraci&oacute;n pertinente a la transacci&oacute;n como el tipo de factura, o la
+                    condici&oacute;n de venta, forma de pago, as&iacute; como cualquier detalle referido a la
+                    transacci&oacute;n all&iacute; reflejada.</span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">Y finalmente, al pie del formulario, las opciones
+                    para descargar PDF, y enviar el comprobante por e-mail tanto al proveedor como al cliente al
+                    instante.&nbsp; </span></span></p>
+
+        <p>&nbsp;</p>
+
+        <p><strong><span style="font-size:12.0pt"><span style="color:black">Posici&oacute;nate en el mercado con una
+                        imagen renovada y actual.</span></span></strong></p>
+
+        <p>&nbsp;</p>
+
+        <p><span style="font-size:12.0pt"><span style="color:black">La imagen que transmite un negocio es su principal
+                    tarjeta de presentaci&oacute;n.&nbsp; La atenci&oacute;n, la organizaci&oacute;n, el servicio y el
+                    avance hacia la adopci&oacute;n de las nuevas tecnolog&iacute;as son cualidades distintivas e
+                    imprescindibles para posicionarse frente a la competencia en los tiempos que corren.</span></span>
+        </p>
+
+        <p>&nbsp;</p>
+
+        <p><em><span style="font-size:12.0pt"><span style="color:black">Crea factura gratis</span></span></em><span
+                style="font-size:12.0pt"><span style="color:black"> es un nuevo modo de confeccionar facturas en
+                    l&iacute;nea de forma confiable y con la celeridad que los tiempos actuales requieren. Puedes
+                    convertir tu negocio en una empresa rentable y funcional, ya que posibilita facturar, enviar la
+                    factura y cobrar de forma inmediata.</span></span></p>
+
+        <p>&nbsp;</p>
+    </div>
+</body>
+
+
+
+
+
+
+</body>
+
+</html>
